@@ -1,0 +1,11 @@
+﻿[2m9:42:48 pm[22m [36m[1m[vite][22m[39m [38;2;40;180;170mΓ¼Ñ Netlify[39m 
+[2m9:42:48 pm[22m [36m[1m[vite][22m[39m [38;2;40;180;170mΓ¼Ñ Netlify[39m Adding local .netlify folder to .gitignore file...
+[2m9:42:49 pm[22m [36m[1m[vite][22m[39m [38;2;40;180;170mΓ¼Ñ Netlify[39m Environment loaded
+[2m9:42:49 pm[22m [36m[1m[vite][22m[39m [38;2;40;180;170mΓ¼Ñ Netlify[39m Middleware loaded. Emulating features: aiGateway, blobs, edgeFunctions, environmentVariables, functions, geolocation, headers, images, redirects, static.
+[2m9:42:49 pm[22m [36m[1m[vite][22m[39m [38;2;40;180;170mΓ¼Ñ Netlify[39m ≡ƒÆ¡ Linking this project to a Netlify site lets you deploy your site, use any environment variables defined on your team and site and much more. Run [96mnpx netlify init[39m to get started.
+
+  [32m[1mVITE[22m v7.3.1[39m  [2mready in [0m[1m7152[22m[2m[0m ms[22m
+
+  [32mΓ₧£[39m  [1mLocal[22m:   [36mhttp://localhost:[1m3000[22m/[39m
+[2m  [32mΓ₧£[39m  [1mNetwork[22m[2m: use [22m[1m--host[22m[2m to expose[22m
+[2m[32m  Γ₧£[39m[22m[2m  press [22m[1mh + enter[22m[2m to show help[22m

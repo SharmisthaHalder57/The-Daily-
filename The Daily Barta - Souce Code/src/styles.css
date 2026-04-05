@@ -1,0 +1,472 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss" source("../");
+
+:root {
+  --newsprint: #fdfcf8;
+  --newsprint-dark: #f2efe9;
+  --ink: #181816;
+  --ink-light: #2b2b2b;
+  --ink-faint: #5a5a5a;
+  --rule: #1f1f1f;
+  --rule-light: #d1cdc5;
+  --red-accent: #b02a1b;
+  --red-accent-dark: #8b1f13;
+  --breaking-bg: #b02a1b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: var(--newsprint);
+  color: var(--ink);
+  font-family: 'PT Serif', 'Times New Roman', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Newsprint texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.15;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+}
+
+.headline-serif { font-family: 'Playfair Display', 'Times New Roman', Georgia, serif; }
+.body-serif     { font-family: 'PT Serif', 'Times New Roman', Georgia, serif; }
+
+.newspaper-cols-2 { column-count: 2; column-gap: 1.5rem; column-rule: 1px solid var(--rule-light); }
+.newspaper-cols-3 { column-count: 3; column-gap: 1.5rem; column-rule: 1px solid var(--rule-light); }
+.newspaper-cols-4 { column-count: 4; column-gap: 1rem;   column-rule: 1px solid var(--rule-light); }
+
+.article-text {
+  text-align: justify;
+  hyphens: auto;
+  line-height: 1.65;
+  font-size: 0.9rem;
+  font-family: 'PT Serif', Georgia, serif;
+}
+.article-text p { margin-bottom: 0.75em; }
+
+.drop-cap > p:first-child::first-letter {
+  float: left;
+  font-size: 3.8rem;
+  line-height: 0.8;
+  padding-right: 0.3rem;
+  padding-left: 0.1rem;
+  margin-top: 0.15rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.article-hover { transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.article-hover:hover { box-shadow: 6px 6px 0px var(--ink); transform: translate(-2px, -2px); }
+
+.newspaper-sheet {
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 5px 5px 0 0 rgba(0,0,0,0.03),
+              5px 5px 0 1px var(--rule-light), 10px 10px 0 0 rgba(0,0,0,0.03),
+              10px 10px 0 1px #d1cdc5;
+  border: 1px solid var(--rule);
+}
+
+@keyframes ticker {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.ticker-content { animation: ticker 30s linear infinite; white-space: nowrap; display: inline-block; }
+.ticker-content:hover { animation-play-state: paused; }
+
+.rule-thick  { border: none; border-top: 3px solid var(--rule);        margin: 0.5rem 0; }
+.rule-double { border: none; border-top: 3px double var(--rule);       margin: 0.75rem 0; }
+.rule-thin   { border: none; border-top: 1px solid var(--rule-light);  margin: 0.5rem 0; }
+
+.pull-quote {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  border-top: 2px solid var(--rule);
+  border-bottom: 2px solid var(--rule);
+  padding: 0.75rem 0;
+  margin: 1rem 0;
+  color: var(--ink);
+}
+
+.priority-breaking { background-color: var(--breaking-bg); color: white; }
+.priority-high     { background-color: #e67e22; color: white; }
+.priority-medium   { background-color: #2980b9; color: white; }
+.priority-low      { background-color: #7f8c8d; color: white; }
+
+@keyframes skeleton-print {
+  0%   { opacity: 0.3; }
+  50%  { opacity: 0.7; }
+  100% { opacity: 0.3; }
+}
+.skeleton {
+  animation: skeleton-print 1.5s ease-in-out infinite;
+  background: linear-gradient(90deg, var(--newsprint-dark) 25%, var(--newsprint) 50%, var(--newsprint-dark) 75%);
+  background-size: 200% 100%;
+}
+
+.audio-btn {
+  font-family: 'PT Serif', Georgia, serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.category-badge {
+  font-family: 'PT Serif', Georgia, serif;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.continued { font-family: 'PT Serif', Georgia, serif; font-style: italic; font-size: 0.8rem; color: var(--ink-faint); }
+
+.page-footer {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  border-top: 2px solid var(--rule);
+  padding-top: 0.5rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.input-section {
+  background: linear-gradient(135deg, var(--newsprint) 0%, var(--newsprint-dark) 100%);
+  border: 1px solid var(--rule-light);
+}
+
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: var(--newsprint-dark); }
+::-webkit-scrollbar-thumb { background: var(--rule-light); }
+
+.article-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.25) sepia(20%) brightness(0.95);
+}
+
+.dateline {
+  font-family: 'PT Serif', Georgia, serif;
+  font-style: italic;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NEWSPAPER PRINT EDITION — PrintEdition.tsx
+   Broadsheet layout modelled after TOI / The Telegraph
+   Hidden on screen; visible ONLY when printing.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Hide the print edition on screen */
+#print-edition {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 1cm 1.2cm;
+  }
+
+  /* Only show our dedicated print edition */
+  #print-edition {
+    display: block !important;
+    width: 100%;
+    background: #fff;
+    color: #000;
+    font-family: 'PT Serif', 'Times New Roman', Georgia, serif;
+    font-size: 9pt;
+    line-height: 1.4;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── MASTHEAD ── */
+  .np-root { background: #fff; }
+
+  .np-masthead {
+    padding-bottom: 4pt;
+    margin-bottom: 6pt;
+  }
+
+  .np-masthead-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 4pt;
+  }
+
+  .np-masthead-title {
+    font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+    font-size: 38pt;
+    font-weight: 400;
+    line-height: 1;
+    text-align: center;
+    letter-spacing: -0.02em;
+    flex: 1;
+  }
+
+  .np-masthead-meta-left,
+  .np-masthead-meta-right {
+    font-family: 'PT Serif', serif;
+    font-size: 7pt;
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    width: 120pt;
+  }
+  .np-masthead-meta-right { text-align: right; }
+
+  .np-masthead-tagline {
+    text-align: center;
+    font-family: 'PT Serif', serif;
+    font-size: 7pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2pt 0;
+    color: #333;
+  }
+
+  /* ── RULES ── */
+  .np-rule-thick  { border: none; border-top: 2.5pt solid #000; margin: 3pt 0; }
+  .np-rule-double { border: none; border-top: 3pt double #000;  margin: 3pt 0; }
+  .np-rule-thin   { border: none; border-top: 0.5pt solid #555; margin: 3pt 0; }
+
+  /* ── SECTION LABELS ── */
+  .np-section-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 8pt;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    border-top: 2pt solid #000;
+    border-bottom: 0.5pt solid #000;
+    padding: 2pt 0;
+    margin-bottom: 6pt;
+  }
+
+  .np-section-label-breaking {
+    font-family: 'Playfair Display', serif;
+    font-size: 8.5pt;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #fff;
+    background: #000;
+    padding: 2pt 6pt;
+    margin-bottom: 5pt;
+    display: inline-block;
+  }
+
+  /* ── BREAKING NEWS ── */
+  .np-section-breaking { margin-bottom: 4pt; }
+  .np-breaking-story   { margin-bottom: 3pt; }
+
+  .np-breaking-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 22pt;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 3pt;
+  }
+
+  .np-breaking-photo-wrap {
+    float: right;
+    width: 45%;
+    margin: 0 0 3pt 8pt;
+  }
+
+  .np-breaking-photo {
+    width: 100%;
+    max-height: 140pt;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.1);
+    display: block;
+  }
+
+  .np-breaking-body {
+    text-align: justify;
+    hyphens: auto;
+    column-count: 3;
+    column-gap: 12pt;
+    column-rule: 0.5pt solid #aaa;
+  }
+
+  /* ── HIGH PRIORITY GRID (2-col) ── */
+  .np-grid-high {
+    column-count: 2;
+    column-gap: 12pt;
+    column-rule: 0.5pt solid #ccc;
+  }
+
+  /* ── MEDIUM + LOW GRID (4-col) ── */
+  .np-grid-cols {
+    column-count: 4;
+    column-gap: 10pt;
+    column-rule: 0.5pt solid #ccc;
+  }
+
+  .np-section { margin-bottom: 3pt; }
+
+  /* ── ARTICLE BLOCK ── */
+  .np-article-block {
+    margin-bottom: 8pt;
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+  .np-category-label {
+    font-size: 6.5pt;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-bottom: 1pt solid #000;
+    padding-bottom: 1pt;
+    margin-bottom: 3pt;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .np-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 11pt;
+    font-weight: 900;
+    line-height: 1.2;
+    margin: 0 0 1pt 0;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .np-headline-large {
+    font-family: 'Playfair Display', serif;
+    font-size: 16pt;
+    font-weight: 900;
+    line-height: 1.15;
+    margin: 0 0 1pt 0;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .np-byline {
+    font-size: 6.5pt;
+    font-style: italic;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1pt;
+  }
+
+  .np-lead {
+    font-size: 9pt;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.4;
+    margin: 0 0 2pt 0;
+  }
+
+  /* ── BODY TEXT ── */
+  .np-body { text-align: justify; hyphens: auto; }
+  .np-body p {
+    margin: 0 0 2pt 0;
+    font-size: 8.5pt;
+    line-height: 1.4;
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* ── DROP CAP ── */
+  .np-drop-cap::first-letter,
+  .np-breaking-body p:first-child::first-letter {
+    float: left;
+    font-family: 'Playfair Display', serif;
+    font-size: 30pt;
+    font-weight: 900;
+    line-height: 0.8;
+    padding-right: 3pt;
+    margin-top: 2pt;
+    text-transform: uppercase;
+    color: #000;
+  }
+
+  /* ── PHOTO BLOCK ── */
+  .np-photo-block {
+    margin: 2pt 0;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .np-photo {
+    width: 100%;
+    max-height: 120pt;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.1) brightness(0.95);
+    display: block;
+  }
+  .np-photo-caption {
+    font-size: 6.5pt;
+    color: #444;
+    font-style: italic;
+    border-bottom: 0.5pt solid #aaa;
+    padding: 1pt 0 2pt 0;
+    line-height: 1.3;
+  }
+
+  /* ── KEY POINTS ── */
+  .np-highlights {
+    border: 0.5pt solid #888;
+    padding: 3pt 5pt;
+    margin-top: 4pt;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .np-highlights-label {
+    font-size: 6.5pt;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 2pt;
+    border-bottom: 0.5pt solid #888;
+    padding-bottom: 1pt;
+  }
+  .np-highlights ul { margin: 0; padding: 0 0 0 10pt; list-style: disc; }
+  .np-highlights li { font-size: 7.5pt; line-height: 1.3; margin-bottom: 1pt; orphans: 2; widows: 2; }
+
+  /* ── NEWSPAPER FOOTER ── */
+  .np-footer { margin-top: 8pt; }
+  .np-footer-content {
+    display: flex;
+    justify-content: space-between;
+    font-size: 6.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #444;
+    padding-top: 3pt;
+  }
+
+  /* ── Hide all interactive web elements ── */
+  .pdf-download-btn, button, input, nav,
+  [role="marquee"], .ticker-content {
+    display: none !important;
+  }
+}

@@ -1,0 +1,7 @@
+node_modules/
+# Local Netlify folder
+.netlify
+# Environment variables (API keys — never commit!)
+.env
+.env.local
+.env.*.local
