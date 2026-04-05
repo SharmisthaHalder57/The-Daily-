@@ -116,7 +116,7 @@ Deployed using **Netlify** for fast and reliable hosting.
 ## 👩‍💻 Team
 
 * **Sharmistha Halder** – Team Lead
-* **Soham Mazumdar** 
+* **Soham Mazumder** 
 * **Divya Mondal**
 * **Srineeja Bhowmick**
 
