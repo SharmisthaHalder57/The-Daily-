@@ -76,7 +76,7 @@ We built a **type-safe, modular, and scalable content platform** using modern we
 ## 🎥 Demo
 
 🔗 **Live Demo:** https://69d207f86941c89f1797191b--thedailybarta.netlify.app/
-📽️ **Demo Video:** 
+📽️ **Demo Video:** https://drive.google.com/file/d/11_ks-6Dunk1-iL5TWMV_Be9t9su8euqX/view?usp=sharing
 
 ---
 
